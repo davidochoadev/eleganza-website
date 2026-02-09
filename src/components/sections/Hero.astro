@@ -1,0 +1,97 @@
+---
+const whatsappLink = "https://wa.me/393762059729?text=Ciao%20Eleganza%2C%20vorrei%20prenotare%20un%20consulto";
+const phoneLink = "tel:+393762059729";
+---
+
+<section id="hero" class="relative isolate overflow-hidden bg-[linear-gradient(135deg,#f9f3ec_0%,#f4e7dd_40%,#f9f3ec_100%)]">
+  <div class="absolute inset-0 opacity-70" aria-hidden="true">
+    <div class="absolute -left-32 -top-32 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_30%_30%,#e8cfc8,transparent_65%)] blur-2xl"></div>
+    <div class="absolute -right-40 top-12 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_70%_30%,#d9b5b0,transparent_60%)] blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_50%_50%,#f1dbd2,transparent_60%)] blur-2xl"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-5 py-16 sm:gap-10 sm:px-6 sm:py-20 md:grid-cols-[1.05fr_0.95fr] md:gap-14 md:py-28">
+    <div class="relative">
+      <div class="flex flex-col items-start gap-3">
+        <div class="flex items-center gap-2 rounded-full border border-[#e1c7bf] bg-white/60 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.22em] text-[#3b2f2f] sm:px-4 sm:text-[0.62rem] sm:tracking-[0.26em]">
+          <span class="h-2 w-2 rounded-full bg-[#b88b84]"></span>
+          Centro estetico a Roma
+        </div>
+        <img
+          src="/logo-eleganza.webp"
+          alt="Eleganza"
+          class="h-24 w-auto sm:h-28 md:h-32"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      
+      <h1 class="mt-2 text-balance font-[\"Cormorant_Garamond\",serif] text-3xl font-semibold leading-[1.08] text-[#2b2322] sm:text-4xl sm:leading-[1.05] md:text-6xl">
+        Eleganza per viso, corpo e benessere.
+        <span class="block text-[#8c5c56]">Rituali sartoriali, risultati reali.</span>
+      </h1>
+
+      <p class="mt-4 max-w-xl text-pretty text-[0.95rem] text-[#4a3d3b] sm:text-base md:text-lg">
+        Trattamenti specialistici per viso, corpo, epilazione laser e beauty care. Un percorso su misura guidato da professioniste con esperienza.
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
+        <a
+          href={whatsappLink}
+          class="w-full rounded-full bg-[#2b2322] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:px-6 sm:text-sm sm:tracking-[0.18em]"
+        >
+          Prenota su WhatsApp
+        </a>
+        <a
+          href={phoneLink}
+          class="w-full rounded-full border border-[#2b2322] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:px-6 sm:text-sm sm:tracking-[0.18em]"
+        >
+          Chiama ora
+        </a>
+      </div>
+
+      <div class="mt-7 grid max-w-xl grid-cols-1 gap-3 text-xs text-[#4a3d3b] sm:grid-cols-2 sm:text-sm">
+        <div class="rounded-2xl border border-[#e1c7bf] bg-white/70 px-3 py-3 sm:px-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-[#8c5c56]">Indirizzo</p>
+          <p class="mt-1 font-semibold text-[#2b2322]">Via Appia Nuova 258, Roma</p>
+        </div>
+        <div class="rounded-2xl border border-[#e1c7bf] bg-white/70 px-3 py-3 sm:px-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-[#8c5c56]">Orari</p>
+          <p class="mt-1 font-semibold text-[#2b2322]">Lun–Sab, 9:00–19:30</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute inset-0 -rotate-2 rounded-[2.8rem] border border-[#d9b5b0] bg-white/40 shadow-[0_26px_70px_-50px_rgba(50,34,33,0.4)]"></div>
+      <div class="relative rounded-[2.4rem] border border-[#2b2322] bg-[#fff9f4] p-5 shadow-[0_36px_110px_-60px_rgba(50,34,33,0.5)] sm:rounded-[2.8rem] sm:p-6">
+        <div class="flex items-center justify-between text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-xs sm:tracking-[0.25em]">
+          <span>Trattamenti</span>
+          <span class="text-[#2b2322]">4 aree</span>
+        </div>
+        <div class="mt-5 space-y-3 sm:mt-6 sm:space-y-4">
+          <div class="rounded-2xl border border-[#e1c7bf] bg-white px-4 py-4 sm:py-5">
+            <p class="font-[\"Cormorant_Garamond\",serif] text-[1.2rem] text-[#2b2322] sm:text-[1.35rem]">Viso</p>
+            <p class="mt-1 text-xs text-[#4a3d3b] sm:text-sm">Dermocosmesi, lifting naturale, anti-age.</p>
+          </div>
+          <div class="rounded-2xl border border-[#e1c7bf] bg-white px-4 py-4 sm:py-5">
+            <p class="font-[\"Cormorant_Garamond\",serif] text-[1.2rem] text-[#2b2322] sm:text-[1.35rem]">Corpo</p>
+            <p class="mt-1 text-xs text-[#4a3d3b] sm:text-sm">Rimodellamento, drenaggio, relax profondo.</p>
+          </div>
+          <div class="rounded-2xl border border-[#e1c7bf] bg-white px-4 py-4 sm:py-5">
+            <p class="font-[\"Cormorant_Garamond\",serif] text-[1.2rem] text-[#2b2322] sm:text-[1.35rem]">Laser & Epilazione</p>
+            <p class="mt-1 text-xs text-[#4a3d3b] sm:text-sm">Tecnologie sicure per pelle liscia a lungo.</p>
+          </div>
+          <div class="rounded-2xl border border-[#e1c7bf] bg-white px-4 py-4 sm:py-5">
+            <p class="font-[\"Cormorant_Garamond\",serif] text-[1.2rem] text-[#2b2322] sm:text-[1.35rem]">Beauty</p>
+            <p class="mt-1 text-xs text-[#4a3d3b] sm:text-sm">Mani, piedi e make-up per ogni occasione.</p>
+          </div>
+        </div>
+        <div class="mt-5 rounded-2xl border border-[#2b2322] bg-[#2b2322] px-5 py-4 text-[#f9f3ec] sm:mt-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-[#f1dbd2]">Disponibilita</p>
+          <p class="mt-1 text-base font-semibold sm:text-lg">Consulenza iniziale in 48h</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

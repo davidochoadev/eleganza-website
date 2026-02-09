@@ -1,0 +1,87 @@
+---
+const whatsappBase = "https://wa.me/393762059729?text=";
+const services = [
+  {
+    title: "Viso",
+    description: "Dermocosmesi, lifting naturale, anti-age. Percorsi personalizzati per una pelle luminosa.",
+    image: "/images/flyer-pulizia-viso.jpeg",
+    message: "Ciao Eleganza, vorrei prenotare un consulto per trattamenti viso.",
+  },
+  {
+    title: "Corpo",
+    description: "Rimodellamento, drenaggio e trattamenti relax per ritrovare equilibrio e leggerezza.",
+    image: "/images/flyer-cura-del-corpo.jpeg",
+    message: "Ciao Eleganza, vorrei prenotare un consulto per trattamenti corpo.",
+  },
+  {
+    title: "Laser & Epilazione",
+    description: "Tecnologie sicure e progressive per una pelle liscia a lungo, con protocolli dedicati.",
+    image: "/images/integrale.jpeg",
+    message: "Ciao Eleganza, vorrei prenotare un consulto per laser ed epilazione.",
+  },
+  {
+    title: "Mani, Piedi & Beauty",
+    description: "Manicure, pedicure e make-up elegante per ogni occasione, con finiture impeccabili.",
+    image: "/images/manicure.jpeg",
+    message: "Ciao Eleganza, vorrei prenotare un consulto per beauty mani/piedi.",
+  },
+];
+---
+
+<section id="servizi" class="relative overflow-hidden bg-[#f9f3ec]">
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute left-10 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle_at_30%_30%,#f1dbd2,transparent_65%)] blur-2xl"></div>
+    <div class="absolute right-20 top-1/3 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_70%_30%,#e8cfc8,transparent_65%)] blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 md:py-24">
+    <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-[#e1c7bf] bg-white/60 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.22em] text-[#3b2f2f] sm:px-4 sm:text-[0.62rem] sm:tracking-[0.26em]">
+          <span class="h-2 w-2 rounded-full bg-[#b88b84]"></span>
+          I nostri servizi
+        </div>
+        <h2 class="mt-4 text-balance font-[\"Cormorant_Garamond\",serif] text-2xl font-semibold leading-[1.15] text-[#2b2322] sm:text-3xl sm:leading-[1.1] md:text-4xl">
+          Trattamenti pensati per valorizzare la tua bellezza in ogni dettaglio.
+        </h2>
+        <p class="mt-4 max-w-2xl text-pretty text-[0.95rem] text-[#4a3d3b] sm:text-base md:text-lg">
+          Quattro macro-aree, ciascuna con protocolli su misura. Ogni percorso inizia con un consulto per definire obiettivi, tempi e rituali dedicati.
+        </p>
+      </div>
+      <div class="rounded-[2rem] border border-[#2b2322] bg-[#fff9f4] px-5 py-5 shadow-[0_26px_80px_-50px_rgba(50,34,33,0.45)] sm:rounded-[2.2rem] sm:px-6">
+        <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-xs sm:tracking-[0.25em]">Focus</p>
+        <p class="mt-2 text-base font-semibold text-[#2b2322] sm:text-lg">Prenotazione guidata in 48h</p>
+        <p class="mt-2 text-xs text-[#4a3d3b] sm:text-sm">Rispondiamo in tempi rapidi e definiamo insieme il percorso migliore.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:mt-12 md:grid-cols-2">
+      {services.map((service) => (
+        <article class="group rounded-[2.2rem] border border-[#e1c7bf] bg-white/70 p-5 shadow-[0_18px_60px_-45px_rgba(50,34,33,0.35)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-50px_rgba(50,34,33,0.45)]">
+          <div class="overflow-hidden rounded-[1.8rem]">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="h-48 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-56 md:h-64"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="mt-5">
+            <h3 class="font-[\"Cormorant_Garamond\",serif] text-xl text-[#2b2322] sm:text-2xl">{service.title}</h3>
+            <p class="mt-2 text-xs text-[#4a3d3b] sm:text-sm">{service.description}</p>
+            <div class="mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href={whatsappBase + encodeURIComponent(service.message)}
+                class="w-full rounded-full bg-[#2b2322] px-5 py-2 text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:text-xs sm:tracking-[0.18em]"
+              >
+                Prenota su WhatsApp
+              </a>
+              <span class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-[0.65rem] sm:tracking-[0.24em]">Consulto iniziale</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+const steps = [
+  {
+    title: "Consulto",
+    description: "Ascoltiamo esigenze e obiettivi. Analisi iniziale per definire un percorso realistico.",
+    label: "Step 01",
+  },
+  {
+    title: "Trattamento",
+    description: "Sedute mirate con protocolli personalizzati e tecnologie selezionate.",
+    label: "Step 02",
+  },
+  {
+    title: "Follow-up",
+    description: "Monitoriamo risultati e consigliamo la routine ideale per mantenerli nel tempo.",
+    label: "Step 03",
+  },
+];
+---
+
+<section id="come-lavoriamo" class="relative overflow-hidden bg-[#f9f3ec]">
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute left-1/4 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle_at_30%_30%,#f1dbd2,transparent_65%)] blur-2xl"></div>
+    <div class="absolute right-10 bottom-10 h-52 w-52 rounded-full bg-[radial-gradient(circle_at_70%_30%,#e8cfc8,transparent_65%)] blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 md:py-24">
+    <div class="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-[#e1c7bf] bg-white/60 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.22em] text-[#3b2f2f] sm:px-4 sm:text-[0.62rem] sm:tracking-[0.26em]">
+          <span class="h-2 w-2 rounded-full bg-[#b88b84]"></span>
+          Come lavoriamo
+        </div>
+        <h2 class="mt-4 text-balance font-[\"Cormorant_Garamond\",serif] text-2xl font-semibold leading-[1.15] text-[#2b2322] sm:text-3xl sm:leading-[1.1] md:text-4xl">
+          Un percorso chiaro, con risultati misurabili e cura costante.
+        </h2>
+        <p class="mt-4 max-w-xl text-pretty text-[0.95rem] text-[#4a3d3b] sm:text-base md:text-lg">
+          Ogni trattamento inizia con una valutazione attenta. Definiamo obiettivi, scegliamo il protocollo ideale e monitoriamo i progressi insieme.
+        </p>
+      </div>
+      <div class="rounded-[2rem] border border-[#2b2322] bg-[#fff9f4] px-5 py-5 shadow-[0_26px_80px_-50px_rgba(50,34,33,0.45)] sm:rounded-[2.2rem] sm:px-6 sm:py-6">
+        <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-xs sm:tracking-[0.25em]">Metodo</p>
+        <p class="mt-2 text-base font-semibold text-[#2b2322] sm:text-lg">Percorsi su misura</p>
+        <p class="mt-2 text-xs text-[#4a3d3b] sm:text-sm">Ogni step e' pensato per darti comfort, sicurezza e risultati progressivi.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 md:grid-cols-3">
+      {steps.map((step) => (
+        <article class="relative rounded-[2rem] border border-[#e1c7bf] bg-white/70 px-5 py-6 shadow-[0_16px_60px_-45px_rgba(50,34,33,0.35)]">
+          <div class="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-[#8c5c56]">
+            <span>{step.label}</span>
+            <span class="h-9 w-9 rounded-full border border-[#e1c7bf] bg-white text-center leading-9 text-[#2b2322]">{step.label.split(" ")[1]}</span>
+          </div>
+          <h3 class="mt-4 font-[\"Cormorant_Garamond\",serif] text-2xl text-[#2b2322]">{step.title}</h3>
+          <p class="mt-2 text-sm text-[#4a3d3b]">{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

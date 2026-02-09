@@ -1,0 +1,46 @@
+---
+const address = "Via Appia Nuova 258, Roma, Lazio, Italia";
+const phone = "+39 376 205 9729";
+const phoneLink = "tel:+393762059729";
+const whatsappLink = "https://wa.me/393762059729?text=Ciao%20Eleganza%2C%20vorrei%20prenotare%20un%20consulto";
+const hours = "Lun–Sab, 9:00–19:30";
+---
+
+<footer class="bg-[#2b2322] text-[#f9f3ec]">
+  <div class="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-16">
+    <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr_1fr] md:gap-10">
+      <div>
+        <img src="/logo-eleganza.webp" alt="Eleganza" class="h-16 w-auto" loading="lazy" />
+        <p class="mt-4 max-w-sm text-sm text-[#f1dbd2]">
+          Centro estetico a Roma dedicato a viso, corpo, epilazione e beauty care. Percorsi su misura e consulenze dedicate.
+        </p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.28em] text-[#f1dbd2]">Contatti</p>
+        <div class="mt-4 space-y-3 text-sm">
+          <p class="text-[#f9f3ec]">{address}</p>
+          <a href={phoneLink} class="block text-[#f9f3ec] hover:text-[#f1dbd2]">{phone}</a>
+          <a href={whatsappLink} class="block text-[#f9f3ec] hover:text-[#f1dbd2]">WhatsApp</a>
+          <p class="text-[#f1dbd2]">{hours}</p>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.28em] text-[#f1dbd2]">Link utili</p>
+        <div class="mt-4 space-y-3 text-sm">
+          <a href="#servizi" class="block hover:text-[#f1dbd2]">Servizi</a>
+          <a href="#chi-siamo" class="block hover:text-[#f1dbd2]">Chi siamo</a>
+          <a href="#gallery" class="block hover:text-[#f1dbd2]">Gallery</a>
+          <a href="#contatti" class="block hover:text-[#f1dbd2]">Contatti</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[#4b3a37] pt-6 text-xs text-[#f1dbd2]">
+      <p>© 2026 Eleganza. Tutti i diritti riservati.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-[#f9f3ec]">Privacy Policy</a>
+        <a href="#" class="hover:text-[#f9f3ec]">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,57 @@
+---
+const images = [
+  { src: "/images/operatrice-al-lavoro.jpeg", alt: "Operatrice al lavoro" },
+  { src: "/images/manicure.jpeg", alt: "Manicure" },
+  { src: "/images/ufficio.jpeg", alt: "Reception" },
+  { src: "/images/logo-ricamato-sulla-divisa.jpeg", alt: "Dettaglio divisa" },
+  { src: "/images/flyer-bellezza-e-benessere.jpeg", alt: "Bellezza e benessere" },
+  { src: "/images/flyer-cura-del-corpo.jpeg", alt: "Cura del corpo" },
+  { src: "/images/flyer-pulizia-viso.jpeg", alt: "Pulizia viso" },
+  { src: "/images/integrale.jpeg", alt: "Trattamento laser" },
+];
+---
+
+<section id="gallery" class="relative overflow-hidden bg-[#f4e7dd]">
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute left-10 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle_at_30%_30%,#f1dbd2,transparent_65%)] blur-2xl"></div>
+    <div class="absolute right-10 bottom-10 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_70%_30%,#e8cfc8,transparent_65%)] blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 md:py-24">
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-[#e1c7bf] bg-white/60 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.22em] text-[#3b2f2f] sm:px-4 sm:text-[0.62rem] sm:tracking-[0.26em]">
+          <span class="h-2 w-2 rounded-full bg-[#b88b84]"></span>
+          Gallery
+        </div>
+        <h2 class="mt-4 text-balance font-[\"Cormorant_Garamond\",serif] text-2xl font-semibold leading-[1.15] text-[#2b2322] sm:text-3xl sm:leading-[1.1] md:text-4xl">
+          Atmosfere, rituali e dettagli che raccontano Eleganza.
+        </h2>
+        <p class="mt-4 max-w-2xl text-pretty text-[0.95rem] text-[#4a3d3b] sm:text-base md:text-lg">
+          Uno sguardo autentico sul nostro centro: ambienti, trattamenti e attenzioni che fanno la differenza.
+        </p>
+      </div>
+      <div class="rounded-[2rem] border border-[#2b2322] bg-[#fff9f4] px-5 py-4 text-xs text-[#2b2322] shadow-[0_24px_70px_-50px_rgba(50,34,33,0.45)] sm:text-sm">
+        8 scatti reali del centro e delle lavorazioni.
+      </div>
+    </div>
+
+    <div class="mt-10 grid grid-cols-2 gap-4 sm:mt-12 md:grid-cols-4">
+      {images.map((image) => (
+        <figure class="group relative overflow-hidden rounded-[1.6rem] border border-[#e1c7bf] bg-white shadow-[0_16px_60px_-45px_rgba(50,34,33,0.35)]">
+          <img
+            src={image.src}
+            alt={image.alt}
+            class="h-40 w-full object-cover transition duration-500 group-hover:scale-[1.05] sm:h-48 md:h-56"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#2b2322]/35 via-transparent opacity-0 transition duration-500 group-hover:opacity-100"></div>
+          <figcaption class="pointer-events-none absolute bottom-4 left-4 text-xs uppercase tracking-[0.2em] text-[#f9f3ec] opacity-0 transition duration-500 group-hover:opacity-100">
+            {image.alt}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
