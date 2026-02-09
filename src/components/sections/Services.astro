@@ -4,25 +4,25 @@ const services = [
   {
     title: "Viso",
     description: "Dermocosmesi, lifting naturale, anti-age. Percorsi personalizzati per una pelle luminosa.",
-    image: "/images/flyer-pulizia-viso.jpeg",
+    image: "/images/servizi/trattamenti-viso.jpeg",
     message: "Ciao Eleganza, vorrei prenotare un consulto per trattamenti viso.",
   },
   {
     title: "Corpo",
     description: "Rimodellamento, drenaggio e trattamenti relax per ritrovare equilibrio e leggerezza.",
-    image: "/images/flyer-cura-del-corpo.jpeg",
+    image: "/images/servizi/trattamenti-corpo.jpeg",
     message: "Ciao Eleganza, vorrei prenotare un consulto per trattamenti corpo.",
   },
   {
     title: "Laser & Epilazione",
     description: "Tecnologie sicure e progressive per una pelle liscia a lungo, con protocolli dedicati.",
-    image: "/images/integrale.jpeg",
+    image: "/images/macchinari-e-fornitori/macchine-e-fornitori-microworld.webp",
     message: "Ciao Eleganza, vorrei prenotare un consulto per laser ed epilazione.",
   },
   {
     title: "Mani, Piedi & Beauty",
     description: "Manicure, pedicure e make-up elegante per ogni occasione, con finiture impeccabili.",
-    image: "/images/manicure.jpeg",
+    image: "/images/servizi/trattamenti-mani-e-piedi.jpeg",
     message: "Ciao Eleganza, vorrei prenotare un consulto per beauty mani/piedi.",
   },
 ];
@@ -57,27 +57,33 @@ const services = [
 
     <div class="mt-10 grid gap-6 sm:mt-12 md:grid-cols-2">
       {services.map((service) => (
-        <article class="group rounded-[2.2rem] border border-[#e1c7bf] bg-white/70 p-5 shadow-[0_18px_60px_-45px_rgba(50,34,33,0.35)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-50px_rgba(50,34,33,0.45)]">
-          <div class="overflow-hidden rounded-[1.8rem]">
-            <img
-              src={service.image}
-              alt={service.title}
-              class="h-48 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-56 md:h-64"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="mt-5">
-            <h3 class="font-[\"Cormorant_Garamond\",serif] text-xl text-[#2b2322] sm:text-2xl">{service.title}</h3>
-            <p class="mt-2 text-xs text-[#4a3d3b] sm:text-sm">{service.description}</p>
-            <div class="mt-4 flex flex-wrap items-center gap-3">
-              <a
-                href={whatsappBase + encodeURIComponent(service.message)}
-                class="w-full rounded-full bg-[#2b2322] px-5 py-2 text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:text-xs sm:tracking-[0.18em]"
-              >
-                Prenota su WhatsApp
-              </a>
-              <span class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-[0.65rem] sm:tracking-[0.24em]">Consulto iniziale</span>
+        <article class="group overflow-hidden rounded-[2.2rem] border border-[#e1c7bf] bg-white/70 shadow-[0_18px_60px_-45px_rgba(50,34,33,0.35)] transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-50px_rgba(50,34,33,0.45)]">
+          <div class="grid gap-6 p-5 sm:p-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div class="relative rounded-[1.6rem] border border-[#e1c7bf] bg-[#fff9f4] p-4 shadow-[0_20px_60px_-45px_rgba(50,34,33,0.35)]">
+              <div class="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-[radial-gradient(circle_at_30%_30%,#e8cfc8,transparent_70%)] blur-xl"></div>
+              <div class="aspect-[3/4] w-full overflow-hidden rounded-[1.2rem] bg-white">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div>
+              <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56]">Percorso</p>
+              <h3 class="mt-2 font-[\"Cormorant_Garamond\",serif] text-xl text-[#2b2322] sm:text-2xl">{service.title}</h3>
+              <p class="mt-3 text-xs text-[#4a3d3b] sm:text-sm">{service.description}</p>
+              <div class="mt-5 flex flex-wrap items-center gap-3">
+                <a
+                  href={whatsappBase + encodeURIComponent(service.message)}
+                  class="w-full rounded-full bg-[#2b2322] px-5 py-2 text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:text-xs sm:tracking-[0.18em]"
+                >
+                  Prenota su WhatsApp
+                </a>
+                <span class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-[0.65rem] sm:tracking-[0.24em]">Consulto iniziale</span>
+              </div>
             </div>
           </div>
         </article>
