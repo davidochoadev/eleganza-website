@@ -36,22 +36,87 @@ const images = [
       </div>
     </div>
 
-    <div class="mt-10 grid grid-cols-2 gap-4 sm:mt-12 md:grid-cols-4">
+    <div class="mt-10 grid grid-cols-2 gap-4 sm:mt-12 md:grid-cols-4" data-gallery-grid>
       {images.map((image) => (
         <figure class="group relative overflow-hidden rounded-[1.6rem] border border-[#e1c7bf] bg-white shadow-[0_16px_60px_-45px_rgba(50,34,33,0.35)]">
-          <img
-            src={image.src}
-            alt={image.alt}
-            class="h-40 w-full object-cover transition duration-500 group-hover:scale-[1.05] sm:h-48 md:h-56"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#2b2322]/35 via-transparent opacity-0 transition duration-500 group-hover:opacity-100"></div>
-          <figcaption class="pointer-events-none absolute bottom-4 left-4 text-xs uppercase tracking-[0.2em] text-[#f9f3ec] opacity-0 transition duration-500 group-hover:opacity-100">
-            {image.alt}
-          </figcaption>
+          <button
+            type="button"
+            class="relative block h-full w-full text-left"
+            data-gallery-item
+            data-src={image.src}
+            data-alt={image.alt}
+            aria-label={`Apri ${image.alt}`}
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="h-40 w-full object-cover transition duration-500 group-hover:scale-[1.05] sm:h-48 md:h-56"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#2b2322]/35 via-transparent opacity-0 transition duration-500 group-hover:opacity-100"></div>
+            <figcaption class="pointer-events-none absolute bottom-4 left-4 text-xs uppercase tracking-[0.2em] text-[#f9f3ec] opacity-0 transition duration-500 group-hover:opacity-100">
+              {image.alt}
+            </figcaption>
+          </button>
         </figure>
       ))}
     </div>
   </div>
+
+  <dialog
+    data-gallery-modal
+    class="group m-auto w-[92vw] max-w-[900px] overflow-hidden rounded-[1.6rem] border border-[#e1c7bf] bg-[#fff9f4] p-0 text-[#2b2322] shadow-[0_30px_120px_-60px_rgba(40,26,24,0.6)] backdrop:bg-[#2b2322]/50"
+  >
+    <div class="relative">
+      <button
+        type="button"
+        data-gallery-close
+        class="absolute right-3 top-3 rounded-full border border-[#2b2322] bg-[#2b2322] px-3 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322]"
+      >
+        Chiudi
+      </button>
+      <img
+        data-gallery-image
+        src=""
+        alt=""
+        class="max-h-[80vh] w-full rounded-[1.6rem] object-contain bg-white"
+        loading="lazy"
+        decoding="async"
+      />
+      <p
+        data-gallery-caption
+        class="px-5 pb-5 pt-3 text-xs uppercase tracking-[0.2em] text-[#8c5c56]"
+      ></p>
+    </div>
+  </dialog>
 </section>
+
+<script>
+  const modal = document.querySelector("[data-gallery-modal]");
+  const modalImage = modal?.querySelector("[data-gallery-image]");
+  const modalCaption = modal?.querySelector("[data-gallery-caption]");
+  const closeButton = modal?.querySelector("[data-gallery-close]");
+  const items = document.querySelectorAll("[data-gallery-item]");
+
+  if (modal && modalImage && modalCaption && closeButton) {
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        const src = item.getAttribute("data-src");
+        const alt = item.getAttribute("data-alt") || "";
+        if (!src) return;
+        modalImage.setAttribute("src", src);
+        modalImage.setAttribute("alt", alt);
+        modalCaption.textContent = alt;
+        if (typeof modal.showModal === "function") {
+          modal.showModal();
+        }
+      });
+    });
+
+    closeButton.addEventListener("click", () => modal.close());
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) modal.close();
+    });
+  }
+</script>
