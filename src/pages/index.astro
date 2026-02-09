@@ -32,6 +32,20 @@ import StickyCta from "../components/sections/StickyCta.astro";
 		<title>Eleganza | Bellezza e Benessere a Roma</title>
 	</head>
 	<body class="bg-[#f9f3ec] font-[\"Manrope\",sans-serif] text-[#2b2322]">
+		<div
+			data-dev-warning
+			class="relative bg-[#2b2322] px-10 py-3 text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#f9f3ec] sm:text-xs"
+		>
+			⚠️ Warning: sito in sviluppo. Testi e immagini non definitive.
+			<button
+				type="button"
+				data-dev-warning-close
+				aria-label="Chiudi avviso"
+				class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-[#f1dbd2] px-2 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f9f3ec]"
+			>
+				X
+			</button>
+		</div>
 		<Hero />
 		<Services />
 		<About />
@@ -42,3 +56,14 @@ import StickyCta from "../components/sections/StickyCta.astro";
 		<StickyCta />
 	</body>
 </html>
+
+<script>
+  const warning = document.querySelector("[data-dev-warning]");
+  const closeButton = document.querySelector("[data-dev-warning-close]");
+
+  if (warning && closeButton) {
+    closeButton.addEventListener("click", () => {
+      warning.remove();
+    });
+  }
+</script>
