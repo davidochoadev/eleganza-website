@@ -151,8 +151,9 @@ const phoneLink = "tel:+393762059729";
 
               <div class="mt-5 overflow-hidden rounded-[2rem] border border-[#e1c7bf] bg-white/90 shadow-[0_22px_70px_-55px_rgba(50,34,33,0.35)] sm:mt-6">
                 <div class="flex items-center justify-between border-b border-[#efdcd4] bg-[#fff7f2] px-5 py-3 text-[0.55rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-[0.6rem]">
-                  <span>Servizio</span>
-                  <span>Prezzo</span>
+                  <span class="sm:hidden">Servizio + prezzo</span>
+                  <span class="hidden sm:inline">Servizio</span>
+                  <span class="hidden sm:inline">Prezzo</span>
                 </div>
                 {category.items.map((item, index) => (
                   <div class="group border-b border-[#efdcd4] px-5 py-4 transition last:border-b-0 hover:bg-[#fff6f0]">
@@ -172,21 +173,23 @@ const phoneLink = "tel:+393762059729";
                         )}
                       </div>
                       <div class="flex flex-col items-start gap-3 sm:items-end sm:justify-end">
-                        <button
-                          type="button"
-                          data-service-select
-                          data-service-id={`${category.id}-${index}`}
-                          data-service-name={item.name}
-                          data-service-price={item.price}
-                          data-service-category={category.label}
-                          class="rounded-full border border-[#2b2322] px-3.5 py-1.5 text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec]"
-                        >
-                          Seleziona
-                        </button>
+                        <div class="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-end">
+                          <span class="rounded-full border border-[#e1c7bf] bg-white px-3 py-1 text-sm font-semibold text-[#2b2322]">
+                            {item.price}
+                          </span>
+                          <button
+                            type="button"
+                            data-service-select
+                            data-service-id={`${category.id}-${index}`}
+                            data-service-name={item.name}
+                            data-service-price={item.price}
+                            data-service-category={category.label}
+                            class="rounded-full border border-[#2b2322] px-4 py-2 text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec]"
+                          >
+                            Seleziona
+                          </button>
+                        </div>
                         <span class="hidden h-[1px] flex-1 bg-[linear-gradient(90deg,#e1c7bf_0%,rgba(225,199,191,0)_100%)] sm:block"></span>
-                        <span class="rounded-full border border-[#e1c7bf] bg-white px-3 py-1 text-sm font-semibold text-[#2b2322]">
-                          {item.price}
-                        </span>
                       </div>
                     </div>
                   </div>
