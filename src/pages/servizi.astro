@@ -217,6 +217,13 @@ const phoneLink = "tel:+393762059729";
     </main>
 
     <div
+      data-toast
+      class="fixed bottom-24 left-1/2 z-50 hidden -translate-x-1/2 rounded-full border border-[#2b2322] bg-[#2b2322] px-5 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#f9f3ec] shadow-[0_20px_60px_-35px_rgba(30,20,19,0.6)]"
+    >
+      Richiesta inviata con successo
+    </div>
+
+    <div
       data-cart-bar
       class="fixed bottom-20 left-1/2 z-40 hidden w-[min(92vw,720px)] -translate-x-1/2 rounded-[1.6rem] border border-[#2b2322] bg-[#2b2322] px-4 py-3 text-[#f9f3ec] shadow-[0_24px_70px_-40px_rgba(25,16,15,0.6)] sm:bottom-6 sm:px-6"
     >
@@ -295,6 +302,13 @@ const phoneLink = "tel:+393762059729";
           </label>
         </div>
 
+        <div class="sr-only" aria-hidden="true">
+          <label>
+            Non compilare questo campo
+            <input type="text" data-contact-honey tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
         <div data-contact-time class="mt-4 hidden">
           <label class="text-xs uppercase tracking-[0.18em] text-[#8c5c56]">
             Fascia oraria preferita
@@ -322,6 +336,7 @@ const phoneLink = "tel:+393762059729";
         <p data-contact-error class="mt-4 hidden text-xs text-[#a0443f]">
           Compila i campi obbligatori per continuare.
         </p>
+        <p data-contact-status class="mt-4 hidden text-xs text-[#2b2322]"></p>
 
         <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <button
@@ -423,6 +438,17 @@ const phoneLink = "tel:+393762059729";
       const timeInput = document.querySelector("[data-contact-time-input]");
       const messageInput = document.querySelector("[data-contact-message]");
       const errorText = document.querySelector("[data-contact-error]");
+      const statusText = document.querySelector("[data-contact-status]");
+      const toast = document.querySelector("[data-toast]");
+      const honeyInput = document.querySelector("[data-contact-honey]");
+
+      const contactStorageKey = "eleganza_contact_method";
+      const phoneStorageKey = "eleganza_contact_phone";
+      const emailStorageKey = "eleganza_contact_email";
+      const timeStorageKey = "eleganza_contact_time";
+      const messageStorageKey = "eleganza_cart_message";
+      const lastSubmitKey = "eleganza_last_submit";
+      const cooldownMs = 60 * 1000;
 
       const readCart = () => {
         try {
@@ -515,14 +541,71 @@ const phoneLink = "tel:+393762059729";
         input.addEventListener("change", updateMethodFields);
       });
 
+      const saveContactDraft = () => {
+        const methodInput = contactMethodInputs.find((input) =>
+          (input as HTMLInputElement).checked
+        ) as HTMLInputElement | undefined;
+        if (methodInput) {
+          localStorage.setItem(contactStorageKey, methodInput.value);
+        }
+        if (phoneInput) {
+          localStorage.setItem(phoneStorageKey, (phoneInput as HTMLInputElement).value.trim());
+        }
+        if (emailInput) {
+          localStorage.setItem(emailStorageKey, (emailInput as HTMLInputElement).value.trim());
+        }
+        if (timeInput) {
+          localStorage.setItem(timeStorageKey, (timeInput as HTMLInputElement).value.trim());
+        }
+        if (messageInput) {
+          localStorage.setItem(messageStorageKey, (messageInput as HTMLTextAreaElement).value.trim());
+        }
+      };
+
+      const restoreContactDraft = () => {
+        const storedMethod = localStorage.getItem(contactStorageKey);
+        if (storedMethod) {
+          contactMethodInputs.forEach((input) => {
+            const radio = input as HTMLInputElement;
+            radio.checked = radio.value === storedMethod;
+          });
+        }
+        if (phoneInput) {
+          (phoneInput as HTMLInputElement).value = localStorage.getItem(phoneStorageKey) || "";
+        }
+        if (emailInput) {
+          (emailInput as HTMLInputElement).value = localStorage.getItem(emailStorageKey) || "";
+        }
+        if (timeInput) {
+          (timeInput as HTMLInputElement).value = localStorage.getItem(timeStorageKey) || "";
+        }
+        if (messageInput) {
+          (messageInput as HTMLTextAreaElement).value = localStorage.getItem(messageStorageKey) || "";
+        }
+      };
+
+      const showToast = (message) => {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.remove("hidden");
+        setTimeout(() => {
+          toast.classList.add("hidden");
+        }, 2200);
+      };
+
+      contactMethodInputs.forEach((input) => {
+        input.addEventListener("change", saveContactDraft);
+      });
+      if (phoneInput) phoneInput.addEventListener("input", saveContactDraft);
+      if (emailInput) emailInput.addEventListener("input", saveContactDraft);
+      if (timeInput) timeInput.addEventListener("input", saveContactDraft);
+      if (messageInput) messageInput.addEventListener("input", saveContactDraft);
+
       if (openContact && contactModal) {
         openContact.addEventListener("click", () => {
           updateCartUI();
+          restoreContactDraft();
           updateMethodFields();
-          if (messageInput) {
-            const storedMessage = localStorage.getItem("eleganza_cart_message");
-            (messageInput as HTMLInputElement).value = storedMessage || "";
-          }
           if ("showModal" in contactModal && typeof (contactModal as HTMLDialogElement).showModal === "function") {
             (contactModal as HTMLDialogElement).showModal();
           }
@@ -546,7 +629,7 @@ const phoneLink = "tel:+393762059729";
 
 
       if (confirmContact) {
-        confirmContact.addEventListener("click", () => {
+        confirmContact.addEventListener("click", async () => {
           if (
             !phoneInput ||
             !emailInput ||
@@ -554,9 +637,11 @@ const phoneLink = "tel:+393762059729";
           )
             return;
 
+          const items = readCart();
           const phoneInputEl = phoneInput as HTMLInputElement;
           const emailInputEl = emailInput as HTMLInputElement;
           const timeInputEl = timeInput as HTMLInputElement | null;
+          const honeyValue = honeyInput ? (honeyInput as HTMLInputElement).value.trim() : "";
 
           const isPhoneValid =
             !phoneInputEl.required || phoneInputEl.value.trim().length > 0;
@@ -565,14 +650,63 @@ const phoneLink = "tel:+393762059729";
           const isTimeValid =
             !timeInputEl || !timeInputEl.required || timeInputEl.value.trim().length > 0;
 
-          const isValid = isPhoneValid && isEmailValid && isTimeValid;
+          const hasItems = items.length > 0;
+          const lastSubmit = Number(localStorage.getItem(lastSubmitKey) || "0");
+          const isCooldown = Date.now() - lastSubmit < cooldownMs;
+          const isSpam = honeyValue.length > 0;
+          const isValid = isPhoneValid && isEmailValid && isTimeValid && hasItems && !isCooldown && !isSpam;
           errorText.classList.toggle("hidden", isValid);
-          if (isValid && contactModal) {
-            if (messageInput) {
-              localStorage.setItem("eleganza_cart_message", (messageInput as HTMLInputElement).value.trim());
+          if (!isValid) {
+            if (statusText) {
+              statusText.classList.remove("hidden");
+              if (isCooldown) {
+                statusText.textContent = "Attendi qualche secondo prima di inviare di nuovo.";
+              } else if (isSpam) {
+                statusText.textContent = "Errore di validazione. Riprova.";
+              } else {
+                statusText.textContent = "Compila i campi obbligatori per continuare.";
+              }
             }
-            if ("close" in contactModal && typeof (contactModal as HTMLDialogElement).close === "function") {
-              (contactModal as HTMLDialogElement).close();
+            return;
+          }
+
+          if (statusText) {
+            statusText.classList.remove("hidden");
+            statusText.textContent = "Invio in corso...";
+          }
+
+          const methodInput = contactMethodInputs.find((input) => input.checked);
+          const payload = {
+            method: methodInput ? (methodInput as HTMLInputElement).value : "whatsapp",
+            phone: phoneInputEl.value.trim(),
+            email: emailInputEl.value.trim(),
+            timeRange: timeInputEl ? timeInputEl.value.trim() : "",
+            message: messageInput ? (messageInput as HTMLInputElement).value.trim() : "",
+            items
+          };
+
+          try {
+            const response = await fetch("/api/lead", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+            if (!response.ok) throw new Error("Send failed");
+            if (statusText) statusText.textContent = "Richiesta inviata con successo.";
+            saveContactDraft();
+            writeCart([]);
+            updateCartUI();
+            showToast("Richiesta inviata con successo");
+            localStorage.setItem(lastSubmitKey, String(Date.now()));
+            setTimeout(() => {
+              if (contactModal && "close" in contactModal && typeof (contactModal as HTMLDialogElement).close === "function") {
+                (contactModal as HTMLDialogElement).close();
+              }
+              if (statusText) statusText.classList.add("hidden");
+            }, 800);
+          } catch (error) {
+            if (statusText) {
+              statusText.textContent = "Errore di invio. Riprova tra poco.";
             }
           }
         });
@@ -584,8 +718,12 @@ const phoneLink = "tel:+393762059729";
           updateCartUI();
           if (messageInput) {
             (messageInput as HTMLInputElement).value = "";
-            localStorage.removeItem("eleganza_cart_message");
           }
+          localStorage.removeItem(messageStorageKey);
+          localStorage.removeItem(contactStorageKey);
+          localStorage.removeItem(phoneStorageKey);
+          localStorage.removeItem(emailStorageKey);
+          localStorage.removeItem(timeStorageKey);
         });
       }
 
