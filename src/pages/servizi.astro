@@ -494,14 +494,19 @@ const phoneLink = "tel:+393762059729";
       });
 
       const updateMethodFields = () => {
-        const selected = contactMethodInputs.find((input) => input.checked);
+        // Type assertions to fix "checked" and "value" errors
+        const selected = contactMethodInputs.find((input) => 
+          (input as HTMLInputElement).checked
+        ) as HTMLInputElement | undefined;
+
         const method = selected ? selected.value : "whatsapp";
-        if (phoneInput) phoneInput.required = method !== "email";
-        if (emailInput) emailInput.required = method === "email";
+
+        if (phoneInput) (phoneInput as HTMLInputElement).required = method !== "email";
+        if (emailInput) (emailInput as HTMLInputElement).required = method === "email";
         if (timeWrapper && timeInput) {
           const needsTime = method === "phone";
           timeWrapper.classList.toggle("hidden", !needsTime);
-          timeInput.required = needsTime;
+          (timeInput as HTMLInputElement).required = needsTime;
         }
       };
 
@@ -515,34 +520,59 @@ const phoneLink = "tel:+393762059729";
           updateMethodFields();
           if (messageInput) {
             const storedMessage = localStorage.getItem("eleganza_cart_message");
-            messageInput.value = storedMessage || "";
+            (messageInput as HTMLInputElement).value = storedMessage || "";
           }
-          if (typeof contactModal.showModal === "function") {
-            contactModal.showModal();
+          if ("showModal" in contactModal && typeof (contactModal as HTMLDialogElement).showModal === "function") {
+            (contactModal as HTMLDialogElement).showModal();
           }
         });
       }
 
       if (closeContact && contactModal) {
-        closeContact.addEventListener("click", () => contactModal.close());
+        closeContact.addEventListener("click", () => {
+          if ("close" in contactModal && typeof (contactModal as HTMLDialogElement).close === "function") {
+            (contactModal as HTMLDialogElement).close();
+          }
+        });
         contactModal.addEventListener("click", (event) => {
-          if (event.target === contactModal) contactModal.close();
+          if (event.target === contactModal) {
+            if ("close" in contactModal && typeof (contactModal as HTMLDialogElement).close === "function") {
+              (contactModal as HTMLDialogElement).close();
+            }
+          }
         });
       }
 
+
       if (confirmContact) {
         confirmContact.addEventListener("click", () => {
-          if (!phoneInput || !emailInput || !errorText) return;
-          const isPhoneValid = !phoneInput.required || phoneInput.value.trim().length > 0;
-          const isEmailValid = !emailInput.required || emailInput.value.trim().length > 0;
-          const isTimeValid = !timeInput || !timeInput.required || timeInput.value.trim().length > 0;
+          if (
+            !phoneInput ||
+            !emailInput ||
+            !errorText
+          )
+            return;
+
+          const phoneInputEl = phoneInput as HTMLInputElement;
+          const emailInputEl = emailInput as HTMLInputElement;
+          const timeInputEl = timeInput as HTMLInputElement | null;
+
+          const isPhoneValid =
+            !phoneInputEl.required || phoneInputEl.value.trim().length > 0;
+          const isEmailValid =
+            !emailInputEl.required || emailInputEl.value.trim().length > 0;
+          const isTimeValid =
+            !timeInputEl || !timeInputEl.required || timeInputEl.value.trim().length > 0;
+
           const isValid = isPhoneValid && isEmailValid && isTimeValid;
           errorText.classList.toggle("hidden", isValid);
           if (isValid && contactModal) {
             if (messageInput) {
-              localStorage.setItem("eleganza_cart_message", messageInput.value.trim());
+              localStorage.setItem("eleganza_cart_message", (messageInput as HTMLInputElement).value.trim());
             }
-            contactModal.close();
+            if ("close" in contactModal && typeof (contactModal as HTMLDialogElement).close === "function") {
+              (contactModal as HTMLDialogElement).close();
+            }
           }
         });
       }
@@ -552,7 +582,7 @@ const phoneLink = "tel:+393762059729";
           writeCart([]);
           updateCartUI();
           if (messageInput) {
-            messageInput.value = "";
+            (messageInput as HTMLInputElement).value = "";
             localStorage.removeItem("eleganza_cart_message");
           }
         });
