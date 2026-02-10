@@ -73,17 +73,6 @@
       ]
     },
     {
-      "id": "sauna",
-      "label": "Sauna",
-      "items": [
-        { "name": "Check-up gratuito", "price": "Gratuito" },
-        { "name": "Sauna 15 minuti", "price": "€ 28,00" },
-        { "name": "Sauna 30 minuti", "price": "€ 45,00" },
-        { "name": "Sauna 40 minuti", "price": "€ 60,00" },
-        { "name": "Massaggio + sauna", "price": "€ 95,00" }
-      ]
-    },
-    {
       "id": "mani-piedi",
       "label": "Mani e Piedi",
       "items": [
