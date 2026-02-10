@@ -1,0 +1,564 @@
+---
+import "../styles/global.css";
+import StickyCta from "../components/sections/StickyCta.astro";
+import data from "../data/services.json";
+
+const categories = data.categories;
+const defaultCategory = categories[0]?.id ?? "";
+const whatsappLink = "https://wa.me/393762059729?text=Ciao%20Eleganza%2C%20vorrei%20prenotare%20un%20consulto";
+const phoneLink = "tel:+393762059729";
+---
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <title>Eleganza | Listino Prezzi</title>
+  </head>
+  <body class="bg-[#f9f3ec] font-['Manrope', sans-serif] text-[#2b2322]">
+    <main class="relative overflow-hidden">
+      <div class="absolute inset-0 opacity-70" aria-hidden="true">
+        <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_30%_30%,#e8cfc8,transparent_65%)] blur-3xl"></div>
+        <div class="absolute right-0 top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_70%_30%,#d9b5b0,transparent_60%)] blur-3xl"></div>
+        <div class="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_50%_50%,#f1dbd2,transparent_60%)] blur-2xl"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 md:py-24">
+        <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+          <div>
+            <div class="flex flex-wrap items-center gap-3">
+              <a
+                href="/"
+                class="inline-flex items-center gap-2 rounded-full border border-[#e1c7bf] bg-white/70 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.22em] text-[#3b2f2f] transition hover:border-[#2b2322] hover:text-[#2b2322] sm:px-4 sm:text-[0.62rem] sm:tracking-[0.26em]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                </svg>
+                Torna alla home
+              </a>
+              <div class="inline-flex items-center gap-2 rounded-full border border-[#e1c7bf] bg-white/70 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.22em] text-[#3b2f2f] sm:px-4 sm:text-[0.62rem] sm:tracking-[0.26em]">
+                <span class="h-2 w-2 rounded-full bg-[#b88b84]"></span>
+                Listino prezzi
+              </div>
+            </div>
+            <h1 class="mt-4 text-balance font-['Cormorant Garamond', serif] text-3xl font-semibold leading-[1.1] text-[#2b2322] sm:text-4xl md:text-5xl">
+              Scegli il tuo percorso. Prezzi chiari, rituali su misura.
+            </h1>
+            <p class="mt-4 max-w-2xl text-pretty text-[0.95rem] text-[#4a3d3b] sm:text-base md:text-lg">
+              Seleziona una macro-categoria per vedere il listino completo dei trattamenti. Ogni percorso e' personalizzabile con un consulto iniziale.
+            </p>
+            <div class="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
+              <a
+                href={whatsappLink}
+                class="w-full rounded-full bg-[#2b2322] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:px-6 sm:text-sm sm:tracking-[0.18em]"
+              >
+                <span class="inline-flex items-center justify-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                  </svg>
+                  Prenota su WhatsApp
+                </span>
+              </a>
+              <a
+                href={phoneLink}
+                class="w-full rounded-full border border-[#2b2322] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:w-auto sm:px-6 sm:text-sm sm:tracking-[0.18em]"
+              >
+                <span class="inline-flex items-center justify-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                  </svg>
+                  Chiama ora
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="rounded-[2rem] border border-[#2b2322] bg-[#fff9f4] px-5 py-5 text-sm text-[#2b2322] shadow-[0_24px_70px_-50px_rgba(50,34,33,0.45)]">
+            <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-xs">
+              Consulenza
+            </p>
+            <p class="mt-2 text-base font-semibold sm:text-lg">Check-up gratuito</p>
+            <p class="mt-2 text-xs text-[#4a3d3b] sm:text-sm">
+              Analisi iniziale per definire il trattamento ideale e il percorso piu efficace.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 md:grid-cols-4">
+          {categories.map((category) => (
+            <button
+              type="button"
+              data-category-button={category.id}
+              aria-pressed={category.id === defaultCategory ? "true" : "false"}
+              data-state={category.id === defaultCategory ? "active" : "inactive"}
+              class:list={[
+                "group w-full rounded-[1.6rem] border px-4 py-4 text-left transition cursor-pointer",
+                "bg-white/80 shadow-[0_16px_60px_-45px_rgba(50,34,33,0.35)] hover:-translate-y-0.5 hover:shadow-[0_22px_70px_-50px_rgba(50,34,33,0.45)]",
+                category.id === defaultCategory
+                  ? "border-[#2b2322] bg-[#2b2322] text-[#f9f3ec]"
+                  : "border-[#e1c7bf] text-[#2b2322] bg-white/80"
+              ]}
+            >
+              <p data-category-label class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56]">
+                Categoria
+              </p>
+              <p class="mt-2 font-['Cormorant Garamond', serif] text-xl">{category.label}</p>
+              <p data-category-count class="mt-2 text-xs text-[#4a3d3b]">
+                {category.items.length} servizi
+              </p>
+            </button>
+          ))}
+        </div>
+
+        <div class="mt-6 flex items-center justify-between text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:mt-8 sm:text-xs">
+          <span>Servizi nel dettaglio</span>
+          <span class="h-[1px] flex-1 bg-[#e1c7bf] ml-4"></span>
+        </div>
+
+        <div class="mt-6 rounded-[2.4rem] border border-[#2b2322] bg-[#fff9f4] p-6 shadow-[0_32px_90px_-60px_rgba(50,34,33,0.45)] sm:mt-8 sm:p-8">
+          {categories.map((category) => (
+            <section
+              data-category-panel={category.id}
+              aria-hidden={category.id === defaultCategory ? "false" : "true"}
+              class:list={[
+                "space-y-5",
+                category.id === defaultCategory ? "block" : "hidden"
+              ]}
+            >
+              <div class="flex flex-col gap-5 border-b border-[#e1c7bf] pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-10 p-4">
+                <div class="max-w-xl w-full">
+                  <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-xs">
+                    Listino
+                  </p>
+                  <h2 class="mt-2 font-['Cormorant Garamond', serif] text-2xl text-[#2b2322] sm:text-3xl sm:flex-grow">
+                    {category.label}
+                  </h2>
+                </div>
+                <div class="sm:ml-auto sm:pl-6 rounded-full border border-[#e1c7bf] bg-white/70 px-5 py-2 text-[0.65rem] uppercase tracking-[0.2em] text-[#8c5c56] sm:text-[0.7rem] text-center flex items-center justify-center">
+                  <span class="inline-flex w-full items-center justify-center text-center">
+                    Prezzi indicativi. Percorsi personalizzabili in consulenza.
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-5 overflow-hidden rounded-[2rem] border border-[#e1c7bf] bg-white/90 shadow-[0_22px_70px_-55px_rgba(50,34,33,0.35)] sm:mt-6">
+                <div class="flex items-center justify-between border-b border-[#efdcd4] bg-[#fff7f2] px-5 py-3 text-[0.55rem] uppercase tracking-[0.22em] text-[#8c5c56] sm:text-[0.6rem]">
+                  <span>Servizio</span>
+                  <span>Prezzo</span>
+                </div>
+                {category.items.map((item, index) => (
+                  <div class="group border-b border-[#efdcd4] px-5 py-4 transition last:border-b-0 hover:bg-[#fff6f0]">
+                    <div class="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+                      <div>
+                        <div class="flex flex-wrap items-center gap-2">
+                          <p class="text-sm font-semibold text-[#2b2322]">{item.name}</p>
+                          {"badge" in item && item.badge && (
+                            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#d9b5b0] bg-[#fff1ea] px-3 py-1 text-[0.52rem] font-semibold uppercase tracking-[0.2em] text-[#8c5c56] shadow-[0_6px_16px_-12px_rgba(50,34,33,0.45)]">
+                              <span class="text-[0.7rem]" aria-hidden="true">🤩</span>
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        {"note" in item && item.note && (
+                          <p class="mt-1 text-xs text-[#6b5754]">{item.note}</p>
+                        )}
+                      </div>
+                      <div class="flex flex-col items-start gap-3 sm:items-end sm:justify-end">
+                        <button
+                          type="button"
+                          data-service-select
+                          data-service-id={`${category.id}-${index}`}
+                          data-service-name={item.name}
+                          data-service-price={item.price}
+                          data-service-category={category.label}
+                          class="rounded-full border border-[#2b2322] px-3.5 py-1.5 text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec]"
+                        >
+                          Seleziona
+                        </button>
+                        <span class="hidden h-[1px] flex-1 bg-[linear-gradient(90deg,#e1c7bf_0%,rgba(225,199,191,0)_100%)] sm:block"></span>
+                        <span class="rounded-full border border-[#e1c7bf] bg-white px-3 py-1 text-sm font-semibold text-[#2b2322]">
+                          {item.price}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {category.footerNote && (
+                <div class="rounded-[1.4rem] border border-[#e1c7bf] bg-white/70 px-5 py-4 text-xs text-[#4a3d3b]">
+                  {category.footerNote}
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
+
+        <div class="mt-8 flex justify-center sm:mt-10">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 rounded-full border border-[#2b2322] px-5 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322] sm:text-xs"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+            </svg>
+            Torna alla home
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <div
+      data-cart-bar
+      class="fixed bottom-20 left-1/2 z-40 hidden w-[min(92vw,720px)] -translate-x-1/2 rounded-[1.6rem] border border-[#2b2322] bg-[#2b2322] px-4 py-3 text-[#f9f3ec] shadow-[0_24px_70px_-40px_rgba(25,16,15,0.6)] sm:bottom-6 sm:px-6"
+    >
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#f1dbd2]">Selezionati</p>
+          <p class="mt-1 text-sm font-semibold">
+            <span data-cart-count>0</span> servizi nel carrello
+          </p>
+        </div>
+        <button
+          type="button"
+          data-open-contact
+          class="rounded-full bg-[#f9f3ec] px-5 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#2b2322] transition hover:bg-white"
+        >
+          Richiedi contatto
+        </button>
+      </div>
+    </div>
+
+    <StickyCta />
+
+    <dialog
+      data-contact-modal
+      class="group m-auto max-w-[92vw] w-[min(92vw,620px)] max-h-[95vh] rounded-[1.6rem] border border-[#e1c7bf] bg-[#fff9f4] p-0 text-[#2b2322] shadow-[0_30px_120px_-60px_rgba(40,26,24,0.6)] backdrop:bg-[#2b2322]/50"
+    >
+      <div class="relative p-6 sm:p-7">
+        <button
+          type="button"
+          data-contact-close
+          class="absolute right-4 top-4 rounded-full border border-[#2b2322] bg-[#2b2322] px-3 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#f9f3ec] transition hover:bg-[#3a2f2d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b2322]"
+        >
+          Chiudi
+        </button>
+        <p class="text-[0.6rem] uppercase tracking-[0.22em] text-[#8c5c56]">Richiedi contatto</p>
+        <h3 class="mt-2 font-['Cormorant Garamond', serif] text-2xl">Come preferisci essere contattato?</h3>
+
+        <div class="mt-4 rounded-[1.2rem] border border-[#e1c7bf] bg-white/80 px-4 py-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-[#8c5c56]">Servizi selezionati</p>
+          <div data-cart-list class="mt-3 max-h-56 space-y-4 overflow-y-auto pr-2 text-sm text-[#2b2322]"></div>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-3">
+          <label class="flex min-h-[2.5rem] items-center justify-center gap-2 rounded-full border border-[#e1c7bf] bg-white/70 px-4 py-2 text-center text-[0.65rem] uppercase tracking-[0.18em] whitespace-nowrap">
+            <input type="radio" name="contact-method" value="whatsapp" class="accent-[#2b2322] align-middle" checked />
+            WhatsApp
+          </label>
+          <label class="flex min-h-[2.5rem] items-center justify-center gap-2 rounded-full border border-[#e1c7bf] bg-white/70 px-4 py-2 text-center text-[0.65rem] uppercase tracking-[0.18em] whitespace-nowrap">
+            <input type="radio" name="contact-method" value="email" class="accent-[#2b2322] align-middle" />
+            Email
+          </label>
+          <label class="flex min-h-[2.5rem] items-center justify-center gap-2 rounded-full border border-[#e1c7bf] bg-white/70 px-4 py-2 text-center text-[0.65rem] uppercase tracking-[0.18em] whitespace-nowrap">
+            <input type="radio" name="contact-method" value="phone" class="accent-[#2b2322] align-middle" />
+            Telefonicamente
+          </label>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <label class="text-xs uppercase tracking-[0.18em] text-[#8c5c56]">
+            Telefono
+            <input
+              data-contact-phone
+              type="tel"
+              placeholder="+39 000 000 0000"
+              class="mt-2 w-full rounded-[1rem] border border-[#e1c7bf] bg-white px-4 py-3 text-sm text-[#2b2322] outline-none focus:border-[#2b2322]"
+            />
+          </label>
+          <label class="text-xs uppercase tracking-[0.18em] text-[#8c5c56]">
+            Email
+            <input
+              data-contact-email
+              type="email"
+              placeholder="nome@email.it"
+              class="mt-2 w-full rounded-[1rem] border border-[#e1c7bf] bg-white px-4 py-3 text-sm text-[#2b2322] outline-none focus:border-[#2b2322]"
+            />
+          </label>
+        </div>
+
+        <div data-contact-time class="mt-4 hidden">
+          <label class="text-xs uppercase tracking-[0.18em] text-[#8c5c56]">
+            Fascia oraria preferita
+            <input
+              data-contact-time-input
+              type="text"
+              placeholder="Es. 10:00 - 13:00"
+              class="mt-2 w-full rounded-[1rem] border border-[#e1c7bf] bg-white px-4 py-3 text-sm text-[#2b2322] outline-none focus:border-[#2b2322]"
+            />
+          </label>
+        </div>
+
+        <div class="mt-4">
+          <label class="text-xs uppercase tracking-[0.18em] text-[#8c5c56]">
+            Messaggio
+            <textarea
+              data-contact-message
+              rows="4"
+              placeholder="Scrivi qui eventuali richieste o preferenze..."
+              class="mt-2 w-full resize-none rounded-[1rem] border border-[#e1c7bf] bg-white px-4 py-3 text-sm text-[#2b2322] outline-none focus:border-[#2b2322]"
+            ></textarea>
+          </label>
+        </div>
+
+        <p data-contact-error class="mt-4 hidden text-xs text-[#a0443f]">
+          Compila i campi obbligatori per continuare.
+        </p>
+
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <button
+            type="button"
+            data-contact-confirm
+            class="rounded-full bg-[#2b2322] px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#f9f3ec] transition hover:bg-[#3a2f2d]"
+          >
+            Conferma richiesta
+          </button>
+          <button
+            type="button"
+            data-contact-clear
+            class="rounded-full border border-[#2b2322] px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#2b2322] transition hover:bg-[#2b2322] hover:text-[#f9f3ec]"
+          >
+            Svuota selezione
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      const buttons = Array.from(
+        document.querySelectorAll("[data-category-button]")
+      );
+      const panels = Array.from(
+        document.querySelectorAll("[data-category-panel]")
+      );
+
+      const setActive = (id) => {
+        buttons.forEach((button) => {
+          const isActive = button.getAttribute("data-category-button") === id;
+          button.setAttribute("aria-pressed", String(isActive));
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("data-state", isActive ? "active" : "inactive");
+          const label = button.querySelector("[data-category-label]");
+          const count = button.querySelector("[data-category-count]");
+          if (isActive) {
+            button.classList.add("border-[#2b2322]", "bg-[#2b2322]", "text-[#f9f3ec]");
+            button.classList.remove("border-[#e1c7bf]", "bg-white/80");
+            if (label) {
+              label.classList.remove("text-[#8c5c56]");
+              label.classList.add("text-[#f1dbd2]");
+            }
+            if (count) {
+              count.classList.remove("text-[#4a3d3b]");
+              count.classList.add("text-[#f1dbd2]");
+            }
+          } else {
+            button.classList.remove("border-[#2b2322]", "bg-[#2b2322]", "text-[#f9f3ec]");
+            button.classList.add("border-[#e1c7bf]", "bg-white/80");
+            if (label) {
+              label.classList.add("text-[#8c5c56]");
+              label.classList.remove("text-[#f1dbd2]");
+            }
+            if (count) {
+              count.classList.add("text-[#4a3d3b]");
+              count.classList.remove("text-[#f1dbd2]");
+            }
+          }
+        });
+
+        panels.forEach((panel) => {
+          const isActive = panel.getAttribute("data-category-panel") === id;
+          panel.classList.toggle("hidden", !isActive);
+          panel.setAttribute("aria-hidden", String(!isActive));
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const id = button.getAttribute("data-category-button");
+          if (id) setActive(id);
+        });
+      });
+
+      if (buttons.length) {
+        const defaultId = buttons[0].getAttribute("data-category-button");
+        if (defaultId) setActive(defaultId);
+      }
+
+      const storageKey = "eleganza_cart";
+      const selectButtons = Array.from(
+        document.querySelectorAll("[data-service-select]")
+      );
+      const cartBar = document.querySelector("[data-cart-bar]");
+      const cartCount = document.querySelector("[data-cart-count]");
+      const cartList = document.querySelector("[data-cart-list]");
+      const contactModal = document.querySelector("[data-contact-modal]");
+      const openContact = document.querySelector("[data-open-contact]");
+      const closeContact = document.querySelector("[data-contact-close]");
+      const confirmContact = document.querySelector("[data-contact-confirm]");
+      const clearContact = document.querySelector("[data-contact-clear]");
+      const contactMethodInputs = Array.from(
+        document.querySelectorAll('input[name="contact-method"]')
+      );
+      const phoneInput = document.querySelector("[data-contact-phone]");
+      const emailInput = document.querySelector("[data-contact-email]");
+      const timeWrapper = document.querySelector("[data-contact-time]");
+      const timeInput = document.querySelector("[data-contact-time-input]");
+      const messageInput = document.querySelector("[data-contact-message]");
+      const errorText = document.querySelector("[data-contact-error]");
+
+      const readCart = () => {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || "[]");
+        } catch {
+          return [];
+        }
+      };
+
+      const writeCart = (items) => {
+        localStorage.setItem(storageKey, JSON.stringify(items));
+      };
+
+      const updateCartUI = () => {
+        const items = readCart();
+        const ids = new Set(items.map((item) => item.id));
+        selectButtons.forEach((button) => {
+          const id = button.getAttribute("data-service-id");
+          const isSelected = id && ids.has(id);
+          button.textContent = isSelected ? "Selezionato" : "Seleziona";
+          button.classList.toggle("bg-[#2b2322]", isSelected);
+          button.classList.toggle("text-[#f9f3ec]", isSelected);
+          button.classList.toggle("border-[#2b2322]", true);
+        });
+        if (cartCount) cartCount.textContent = String(items.length);
+        if (cartBar) cartBar.classList.toggle("hidden", items.length === 0);
+        if (cartList) {
+          cartList.innerHTML = "";
+          const grouped = items.reduce((acc, item) => {
+            const key = item.category || "Altro";
+            if (!acc[key]) acc[key] = [];
+            acc[key].push(item);
+            return acc;
+          }, {});
+          Object.entries(grouped).forEach(([category, list]) => {
+            const wrapper = document.createElement("div");
+            const title = document.createElement("p");
+            title.className = "text-[0.6rem] uppercase tracking-[0.2em] text-[#8c5c56]";
+            title.textContent = category;
+            const ul = document.createElement("ul");
+            ul.className = "mt-2 space-y-2";
+            list.forEach((item) => {
+              const li = document.createElement("li");
+              li.className = "flex items-center justify-between gap-3 text-sm text-[#2b2322]";
+              li.innerHTML = `<span>${item.name}</span><span class="font-semibold">${item.price}</span>`;
+              ul.appendChild(li);
+            });
+            wrapper.appendChild(title);
+            wrapper.appendChild(ul);
+            cartList.appendChild(wrapper);
+          });
+        }
+      };
+
+      selectButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const id = button.getAttribute("data-service-id");
+          if (!id) return;
+          const name = button.getAttribute("data-service-name") || "";
+          const price = button.getAttribute("data-service-price") || "";
+          const category = button.getAttribute("data-service-category") || "";
+          const items = readCart();
+          const exists = items.find((item) => item.id === id);
+          const nextItems = exists
+            ? items.filter((item) => item.id !== id)
+            : [...items, { id, name, price, category }];
+          writeCart(nextItems);
+          updateCartUI();
+        });
+      });
+
+      const updateMethodFields = () => {
+        const selected = contactMethodInputs.find((input) => input.checked);
+        const method = selected ? selected.value : "whatsapp";
+        if (phoneInput) phoneInput.required = method !== "email";
+        if (emailInput) emailInput.required = method === "email";
+        if (timeWrapper && timeInput) {
+          const needsTime = method === "phone";
+          timeWrapper.classList.toggle("hidden", !needsTime);
+          timeInput.required = needsTime;
+        }
+      };
+
+      contactMethodInputs.forEach((input) => {
+        input.addEventListener("change", updateMethodFields);
+      });
+
+      if (openContact && contactModal) {
+        openContact.addEventListener("click", () => {
+          updateCartUI();
+          updateMethodFields();
+          if (messageInput) {
+            const storedMessage = localStorage.getItem("eleganza_cart_message");
+            messageInput.value = storedMessage || "";
+          }
+          if (typeof contactModal.showModal === "function") {
+            contactModal.showModal();
+          }
+        });
+      }
+
+      if (closeContact && contactModal) {
+        closeContact.addEventListener("click", () => contactModal.close());
+        contactModal.addEventListener("click", (event) => {
+          if (event.target === contactModal) contactModal.close();
+        });
+      }
+
+      if (confirmContact) {
+        confirmContact.addEventListener("click", () => {
+          if (!phoneInput || !emailInput || !errorText) return;
+          const isPhoneValid = !phoneInput.required || phoneInput.value.trim().length > 0;
+          const isEmailValid = !emailInput.required || emailInput.value.trim().length > 0;
+          const isTimeValid = !timeInput || !timeInput.required || timeInput.value.trim().length > 0;
+          const isValid = isPhoneValid && isEmailValid && isTimeValid;
+          errorText.classList.toggle("hidden", isValid);
+          if (isValid && contactModal) {
+            if (messageInput) {
+              localStorage.setItem("eleganza_cart_message", messageInput.value.trim());
+            }
+            contactModal.close();
+          }
+        });
+      }
+
+      if (clearContact) {
+        clearContact.addEventListener("click", () => {
+          writeCart([]);
+          updateCartUI();
+          if (messageInput) {
+            messageInput.value = "";
+            localStorage.removeItem("eleganza_cart_message");
+          }
+        });
+      }
+
+      updateCartUI();
+    </script>
+  </body>
+</html>

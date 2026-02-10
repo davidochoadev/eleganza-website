@@ -1,0 +1,181 @@
+{
+  "categories": [
+    {
+      "id": "viso",
+      "label": "Trattamenti Viso",
+      "items": [
+        { "name": "Check up viso", "price": "€ 40,00" },
+        { "name": "Trattamento viso personalizzato", "price": "€ 35,00" },
+        { "name": "Pulizia viso profonda", "price": "€ 55,00" },
+        {
+          "name": "Trattamento REVEIL SUBLIME",
+          "note": "Esfoliante con acidi",
+          "price": "€ 90,00"
+        },
+        {
+          "name": "Trattamento LIFTAGELESS",
+          "note": "Anti age",
+          "price": "€ 90,00"
+        },
+        {
+          "name": "Trattamento REVITALON",
+          "note": "Per le pelli piu sensibili",
+          "price": "€ 90,00"
+        },
+        { "name": "Laminazione ciglia", "price": "€ 60,00" },
+        { "name": "Laminazione sopracciglia", "price": "€ 45,00" },
+        { "name": "Laminazione ciglia + sopracciglia", "price": "€ 95,00" },
+        { "name": "Massaggio viso", "price": "€ 40,00" }
+      ]
+    },
+    {
+      "id": "corpo",
+      "label": "Trattamenti Corpo",
+      "items": [
+        { "name": "Massaggio corpo", "price": "€ 60,00" },
+        { "name": "Massaggio decontratturante schiena", "price": "€ 40,00" },
+        { "name": "Massaggio di coppia", "price": "€ 110,00" },
+        {
+          "name": "Trattamento sinuosa Fit",
+          "note": "Drenante, rassodante",
+          "price": "€ 90,00"
+        },
+        {
+          "name": "Trattamento sinuosa Fat",
+          "note": "Riducente, anticellulite",
+          "price": "€ 90,00"
+        },
+        { "name": "Massaggio anticellulite", "price": "€ 70,00" },
+        {
+          "name": "AromaMassage",
+          "note": "Con oli essenziali",
+          "price": "€ 115,00",
+          "badge": "Novita"
+        },
+        {
+          "name": "Trattamento Activa Thalasso DREN1",
+          "note": "Drenante",
+          "price": "€ 90,00"
+        },
+        {
+          "name": "Trattamento Activa Thalasso DREN2",
+          "note": "Anti cellulite",
+          "price": "€ 90,00"
+        },
+        {
+          "name": "Massaggio luxury",
+          "note": "Massaggio corpo, scrub mani, mini trattamento viso",
+          "price": "€ 110,00"
+        },
+        { "name": "Scrub corpo", "price": "€ 50,00" },
+        { "name": "Scrub + massaggio", "price": "€ 95,00" },
+        { "name": "Bendaggio corpo", "price": "€ 40,00" }
+      ]
+    },
+    {
+      "id": "sauna",
+      "label": "Sauna",
+      "items": [
+        { "name": "Check-up gratuito", "price": "Gratuito" },
+        { "name": "Sauna 15 minuti", "price": "€ 28,00" },
+        { "name": "Sauna 30 minuti", "price": "€ 45,00" },
+        { "name": "Sauna 40 minuti", "price": "€ 60,00" },
+        { "name": "Massaggio + sauna", "price": "€ 95,00" }
+      ]
+    },
+    {
+      "id": "mani-piedi",
+      "label": "Mani e Piedi",
+      "items": [
+        { "name": "Pedicure", "price": "da € 35,00 a € 45,00" },
+        { "name": "Manicure russa", "price": "€ 23,00" },
+        { "name": "Smalto semipermanente mani", "price": "€ 30,00" },
+        { "name": "Smalto semipermanente piedi", "price": "€ 30,00" },
+        { "name": "Pedicure estetico + semipermanente", "price": "€ 50,00" },
+        { "name": "Pedicure curativo + semipermanente", "price": "€ 65,00" }
+      ]
+    },
+    {
+      "id": "avanzati",
+      "label": "Trattamenti Avanzati",
+      "items": [
+        { "name": "Pressoterapia", "price": "€ 50,00" },
+        { "name": "Pressoterapia + bendaggio corpo", "price": "€ 75,00" },
+        { "name": "Bio-stimolazione viso", "price": "€ 70,00" },
+        { "name": "Radiofrequenza viso", "price": "€ 75,00" },
+        {
+          "name": "Onda acustica corpo",
+          "note": "Scioglie pannicolo adiposo, drenante",
+          "price": "€ 100,00"
+        },
+        {
+          "name": "Radiofrequenza corpo",
+          "note": "Rassodante, modellante, riducente",
+          "price": "€ 85,00"
+        },
+        {
+          "name": "Multi metodica corpo",
+          "note": "Rassodante, drenante, rimodellante + scioglie adipe localizzata",
+          "price": "€ 140,00"
+        },
+        {
+          "name": "Epilazione laser",
+          "price": "da € 19,90",
+          "badge": "Novita"
+        }
+      ]
+    },
+    {
+      "id": "riflessologia",
+      "label": "Riflessologia Plantare",
+      "items": [
+        { "name": "Riflessologia plantare", "price": "€ 49,00", "badge": "Novita" }
+      ]
+    },
+    {
+      "id": "epilazione-donna",
+      "label": "Epilazione Donna",
+      "items": [
+        { "name": "Mento", "price": "€ 6,00" },
+        { "name": "Sopracciglia", "price": "€ 12,00" },
+        { "name": "Baffetti", "price": "€ 10,00" },
+        { "name": "Gamba intera", "price": "€ 30,00" },
+        { "name": "Gambe intere + inguine", "price": "€ 40,00" },
+        { "name": "Gambe intere + inguine totale", "price": "€ 45,00" },
+        { "name": "Mezza gamba", "price": "€ 20,00" },
+        { "name": "Mezza gamba + inguine", "price": "€ 28,00" },
+        { "name": "Mezza gamba + inguine totale", "price": "€ 32,00" },
+        { "name": "Inguine", "price": "€ 15,00" },
+        { "name": "Inguine totale", "price": "€ 22,00" },
+        { "name": "Ascelle", "price": "€ 12,00" },
+        { "name": "Braccia", "price": "€ 20,00" },
+        { "name": "Glutei", "price": "€ 15,00" },
+        { "name": "Schiena parte lombare", "price": "€ 12,00" }
+      ]
+    },
+    {
+      "id": "epilazione-uomo",
+      "label": "Epilazione Uomo",
+      "items": [
+        { "name": "Gamba intera", "price": "€ 40,00" },
+        { "name": "Braccia", "price": "€ 30,00" },
+        { "name": "Ascelle", "price": "€ 20,00" },
+        { "name": "Petto", "price": "€ 20,00" },
+        { "name": "Addome", "price": "€ 20,00" },
+        { "name": "Spalle", "price": "€ 15,00" },
+        { "name": "Schiena", "price": "€ 35,00" },
+        { "name": "Glutei", "price": "€ 20,00" },
+        { "name": "Sopracciglia", "price": "€ 15,00" }
+      ]
+    },
+    {
+      "id": "makeup",
+      "label": "Makeup",
+      "items": [
+        { "name": "Mini corso makeup", "price": "Su richiesta", "badge": "Novita" },
+        { "name": "Makeup personalizzato eventi", "price": "Su richiesta", "badge": "Novita" }
+      ],
+      "footerNote": "Il nostro team di professionisti dedicati tramite un check up gratuito ti consigliera il percorso e la promozione piu adatta a te."
+    }
+  ]
+}
