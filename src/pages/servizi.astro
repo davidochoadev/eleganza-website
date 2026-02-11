@@ -2,9 +2,93 @@
 import "../styles/global.css";
 import StickyCta from "../components/sections/StickyCta.astro";
 import Footer from "../components/sections/Footer.astro";
-import data from "../data/services.json";
+import fallbackData from "../data/services.json";
 
-const categories = data.categories;
+type PriceItem = {
+  name: string;
+  price: string;
+  note?: string;
+  badge?: string;
+};
+
+type PriceCategory = {
+  id: string;
+  label: string;
+  items: PriceItem[];
+  footerNote?: string;
+};
+
+const isValidFeed = (value: unknown): value is { categories: PriceCategory[] } => {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as { categories?: unknown };
+  if (!Array.isArray(candidate.categories)) return false;
+
+  return candidate.categories.every((category) => {
+    if (!category || typeof category !== "object") return false;
+    const c = category as { id?: unknown; label?: unknown; items?: unknown };
+    if (typeof c.id !== "string" || typeof c.label !== "string" || !Array.isArray(c.items)) {
+      return false;
+    }
+    return c.items.every((item) => {
+      if (!item || typeof item !== "object") return false;
+      const i = item as { name?: unknown; price?: unknown };
+      return typeof i.name === "string" && typeof i.price === "string";
+    });
+  });
+};
+
+const withTimeout = async (resource: string, timeoutMs: number) => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(resource, {
+      signal: controller.signal,
+      headers: { Accept: "application/json" }
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+};
+
+const baseUrl = import.meta.env.LARAVEL_PRICE_LIST_BASE_URL;
+const slug = import.meta.env.PRICE_LIST_FEED_SLUG;
+const token = import.meta.env.PRICE_LIST_FEED_TOKEN;
+
+const loadCategories = async (): Promise<PriceCategory[]> => {
+  if (!baseUrl || !slug || !token) {
+    console.warn(
+      "[price-list] Missing env vars (LARAVEL_PRICE_LIST_BASE_URL / PRICE_LIST_FEED_SLUG / PRICE_LIST_FEED_TOKEN). Using local fallback data."
+    );
+    return fallbackData.categories as PriceCategory[];
+  }
+
+  const normalizedBaseUrl = String(baseUrl).replace(/\/+$/, "");
+  const feedUrl = `${normalizedBaseUrl}/price-list-feed/${encodeURIComponent(String(slug))}?token=${encodeURIComponent(String(token))}`;
+
+  try {
+    const response = await withTimeout(feedUrl, 8000);
+    if (!response.ok) {
+      console.error(
+        `[price-list] Feed request failed: ${response.status} ${response.statusText}. Using local fallback data.`
+      );
+      return fallbackData.categories as PriceCategory[];
+    }
+
+    const payload = (await response.json()) as unknown;
+    if (!isValidFeed(payload)) {
+      console.error("[price-list] Invalid feed payload format. Using local fallback data.");
+      return fallbackData.categories as PriceCategory[];
+    }
+
+    return payload.categories;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[price-list] Feed fetch error: ${message}. Using local fallback data.`);
+    return fallbackData.categories as PriceCategory[];
+  }
+};
+
+const categories = await loadCategories();
 const defaultCategory = categories[0]?.id ?? "";
 const whatsappLink = "https://wa.me/393762059729?text=Ciao%20Eleganza%2C%20vorrei%20prenotare%20un%20consulto";
 const phoneLink = "tel:+393762059729";
