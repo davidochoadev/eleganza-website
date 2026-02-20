@@ -55,28 +55,31 @@ export const POST: APIRoute = async ({ request }) => {
 
   const message = buildMessage({ ...payload, itemsByCategory });
 
-  const requests = chatIds.map(async (chatId) => {
-    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message
-      })
-    });
-    const data = await response.json().catch(() => null);
-    if (!response.ok || !data?.ok) {
-      throw new Error("Telegram error");
-    }
-    return data;
-  });
+  const results = await Promise.all(
+    chatIds.map(async (chatId): Promise<{ chatId: string; success: true } | { chatId: string; success: false; error: string }> => {
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        })
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok || !data?.ok) {
+        return { chatId, success: false, error: data?.description || "Unknown error" };
+      }
+      return { chatId, success: true };
+    })
+  );
 
-  const results = await Promise.allSettled(requests);
-  const succeeded = results.filter((result) => result.status === "fulfilled");
-  const failed = results.filter((result) => result.status === "rejected");
+  const succeeded = results.filter((r): r is { chatId: string; success: true } => r.success);
+  const failed = results.filter((r): r is { chatId: string; success: false; error: string } => !r.success);
 
   if (failed.length > 0) {
-    console.warn(`Lead API: ${failed.length}/${chatIds.length} invii Telegram falliti (messaggio comunque inviato a ${succeeded.length} chat)`);
+    failed.forEach(({ chatId, error }) => {
+      console.warn(`Lead API: invio fallito per chat_id ${chatId}: ${error}`);
+    });
   }
   if (succeeded.length === 0) {
     return new Response(JSON.stringify({ error: "Telegram send failed" }), {
