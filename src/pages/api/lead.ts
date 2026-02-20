@@ -72,9 +72,13 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   const results = await Promise.allSettled(requests);
+  const succeeded = results.filter((result) => result.status === "fulfilled");
   const failed = results.filter((result) => result.status === "rejected");
 
   if (failed.length > 0) {
+    console.warn(`Lead API: ${failed.length}/${chatIds.length} invii Telegram falliti (messaggio comunque inviato a ${succeeded.length} chat)`);
+  }
+  if (succeeded.length === 0) {
     return new Response(JSON.stringify({ error: "Telegram send failed" }), {
       status: 502
     });
